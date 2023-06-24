@@ -1,10 +1,12 @@
-import React from "react";
+import React, { FC, useCallback } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import { ShoppingItem } from "../../../../types";
 import { ShoppingItemView } from "../../../../components/ShoppingItemView";
-import { COLORS } from "../../../../constants";
+import { COLORS, SCREENS } from "../../../../constants";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types";
 
 const mapStateToProps = (state: RootState): ShoppingItem[] => {
   const {
@@ -13,15 +15,28 @@ const mapStateToProps = (state: RootState): ShoppingItem[] => {
   return dataById.map((id) => dataByMap[id]);
 };
 
-export const ShoppingListScreen = () => {
+export const ShoppingListScreen: FC<NativeStackScreenProps<RootStackParamList, 'Shopping_list'>> = ({ navigation }) => {
   const shopingListData = useSelector(mapStateToProps, shallowEqual);
 
-  return <FlatList
-    style={styles.wrapper}
-    data={shopingListData}
-    keyExtractor={({ id }) => id.toString()}
-    renderItem={({ item }) => <ShoppingItemView {...item} />}
-  />;
+  const onItemPress = useCallback(
+    (id: number) => {
+      navigation.navigate(SCREENS.SHOPPING_LIST_STACK.SHOPPING_ITEM, {
+        id,
+      });
+    },
+    [navigation]
+  );
+
+  return (
+    <FlatList
+      style={styles.wrapper}
+      data={shopingListData}
+      keyExtractor={({ id }) => id.toString()}
+      renderItem={({ item }) => (
+        <ShoppingItemView {...item} onPress={() => onItemPress(item.id)} />
+      )}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
@@ -33,4 +48,3 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
 });
-
