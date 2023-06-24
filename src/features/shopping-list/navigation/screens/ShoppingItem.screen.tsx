@@ -8,6 +8,7 @@ import { RootStackParamList } from "../types";
 import { COLORS } from "../../../../constants";
 import { Image } from "../../../../components/Image";
 import { TitleAndPrice } from "../../../../components/TitleAndPrice";
+import { ItemControllers } from "../../components/ItemControllers";
 
 const mapStateToProps =
   (id: number) =>
@@ -27,19 +28,24 @@ export const ShoppingItemScreen: FC<
   const { imageUrl, title, price, description } = shoppingItem;
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <View style={styles.imageAndTitle}>
-        <Image
-          url={imageUrl}
-          imageStyle={styles.image}
-          placeholderTextStyle={styles.imagePlaceholderText}
-        />
-       <TitleAndPrice title={title} price={price} wrapperStyle={styles.titleAndPrice} />
-      </View>
-      <Text style={styles.description}>
-        {description}
-      </Text>
-    </ScrollView>
+    <>
+      <ScrollView style={styles.wrapper}>
+        <View style={styles.imageAndTitle}>
+          <Image
+            url={imageUrl}
+            imageStyle={styles.image}
+            placeholderTextStyle={styles.imagePlaceholderText}
+          />
+          <TitleAndPrice
+            title={title}
+            price={price}
+            wrapperStyle={styles.titleAndPrice}
+          />
+        </View>
+        <Text style={styles.description}>{description}</Text>
+      </ScrollView>
+      <ItemControllers id={itemId} />
+    </>
   );
 };
 
@@ -65,5 +71,5 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 32,
-  }
+  },
 });

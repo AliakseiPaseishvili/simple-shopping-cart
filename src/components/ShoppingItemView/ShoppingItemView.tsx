@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { ShoppingItem } from "../../types";
 import { COLORS } from "../../constants";
-import { Image } from '../Image';
-import { TitleAndPrice} from '../TitleAndPrice';
+import { Image } from "../Image";
+import { TitleAndPrice } from "../TitleAndPrice";
+import { Button } from "../Button";
 
 export interface ShoppingItemViewProps extends ShoppingItem {
   onPress?: () => void;
@@ -16,10 +17,10 @@ export const ShoppingItemView: FC<ShoppingItemViewProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} disabled={!onPress} style={styles.wrapper}>
-     <Image url={imageUrl} />
-     <TitleAndPrice title={title} price={price} />
-    </TouchableOpacity>
+    <Button onPress={onPress} disabled={!onPress} style={styles.wrapper}>
+      <Image url={imageUrl} />
+      <TitleAndPrice title={title} price={price} />
+    </Button>
   );
 };
 
@@ -28,11 +29,11 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 16,
     padding: 16,
-    flexDirection: 'row',
+    flexDirection: "row",
     borderColor: COLORS.borderColor,
     borderWidth: 1,
   },
   price: {
     marginTop: 16,
-  }
+  },
 });
