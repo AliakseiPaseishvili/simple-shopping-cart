@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { ShoppingListNavigator } from "../features/shopping-list/navigation/ShoppingList.navigator";
+import { ShoppingListNavigator } from "../features/shopping-list";
 
 export const Navigation = () => (
   <NavigationContainer>
