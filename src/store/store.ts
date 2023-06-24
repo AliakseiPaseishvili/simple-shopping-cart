@@ -7,3 +7,5 @@ export const store = configureStore({
   shoppingList: shoppingListRecuder,
   }
 });
+
+export type RootState = ReturnType<typeof store.getState>

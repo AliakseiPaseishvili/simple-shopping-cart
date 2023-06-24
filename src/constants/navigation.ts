@@ -3,4 +3,4 @@ export const SCREENS = {
     INDEX: 'SHOPPING_LIST_INDEX',
     SHOPPING_LIST: "Shopping_list",
   },
-};
+} as const;

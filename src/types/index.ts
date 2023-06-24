@@ -6,6 +6,6 @@ export interface ShoppingItem {
   description: string;
 };
 
-export type ShoppingItemMap = Partial<{
-  [key: number]: ShoppingItem;
-}>;
+export type ShoppingItemMap = {
+  [key: string]: ShoppingItem;
+};
