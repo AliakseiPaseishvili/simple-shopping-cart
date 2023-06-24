@@ -8,14 +8,19 @@ import type { RootStackParamList } from "./types";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const ShoppingListNavigator = () => (
-  <Stack.Navigator initialRouteName={SCREENS.SHOPPING_LIST_STACK.SHOPPING_LIST}>
+  <Stack.Navigator
+    initialRouteName={SCREENS.SHOPPING_LIST_STACK.SHOPPING_LIST}
+    screenOptions={{ headerBackTitleVisible: false }}
+  >
     <Stack.Screen
       name={SCREENS.SHOPPING_LIST_STACK.SHOPPING_LIST}
       component={ShoppingListScreen}
+      options={{ headerTitle: "Shopping List" }}
     />
-     <Stack.Screen
+    <Stack.Screen
       name={SCREENS.SHOPPING_LIST_STACK.SHOPPING_ITEM}
       component={ShoppingItemScreen}
+      options={{ headerTitle: "Item" }}
     />
   </Stack.Navigator>
 );

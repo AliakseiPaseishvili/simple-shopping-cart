@@ -4,4 +4,8 @@ export const SCREENS = {
     SHOPPING_LIST: "Shopping_list",
     SHOPPING_ITEM: "Shopping_item",
   },
+  CART: {
+    INDEX: 'SHOPPING_CART_INDEX',
+    CART: 'Cart',
+  }
 } as const;
