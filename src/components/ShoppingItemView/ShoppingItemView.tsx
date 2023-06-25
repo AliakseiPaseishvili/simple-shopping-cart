@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { StyleSheet } from "react-native";
+import React, { FC, ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
 import { ShoppingItem } from "../../types";
 import { COLORS } from "../../constants";
 import { Image } from "../Image";
@@ -8,6 +8,7 @@ import { Button } from "../Button";
 
 export interface ShoppingItemViewProps extends ShoppingItem {
   onPress?: () => void;
+  actions?: ReactNode;
 }
 
 export const ShoppingItemView: FC<ShoppingItemViewProps> = ({
@@ -15,11 +16,15 @@ export const ShoppingItemView: FC<ShoppingItemViewProps> = ({
   title,
   price,
   onPress,
+  actions,
 }) => {
   return (
     <Button onPress={onPress} disabled={!onPress} style={styles.wrapper}>
-      <Image url={imageUrl} />
-      <TitleAndPrice title={title} price={price} />
+      <View style={styles.content}>
+        <Image url={imageUrl} />
+        <TitleAndPrice title={title} price={price} />
+      </View>
+      {actions}
     </Button>
   );
 };
@@ -32,6 +37,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderColor: COLORS.borderColor,
     borderWidth: 1,
+    justifyContent: "space-between",
+  },
+  content: {
+    flexDirection: "row",
   },
   price: {
     marginTop: 16,

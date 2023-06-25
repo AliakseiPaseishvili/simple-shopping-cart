@@ -14,7 +14,7 @@ export const TitleAndPrice: FC<TitleAndPriceProps> = ({
 }) => (
   <View style={wrapperStyle}>
     <Text>{title}</Text>
-    <Text style={styles.price}>{`$${price}`}</Text>
+    <Text style={styles.price}>{`$${price.toFixed(2)}`}</Text>
   </View>
 );
 

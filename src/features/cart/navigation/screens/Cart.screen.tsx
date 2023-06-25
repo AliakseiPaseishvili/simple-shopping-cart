@@ -4,6 +4,7 @@ import { COLORS } from "../../../../constants";
 import { RootState } from "../../../../store";
 import { shallowEqual, useSelector } from "react-redux";
 import { CartItem } from "../../components/CartItem";
+import { CartSum } from "../../components/CartSum";
 
 const mapStateToProps = (state: RootState) => {
   const {
@@ -11,18 +12,31 @@ const mapStateToProps = (state: RootState) => {
     shoppingList: { dataByMap },
   } = state;
 
-  return Object.keys(cart).map((id) => dataByMap[id]);
+  const items = Object.keys(cart).map((id) => dataByMap[id]);
+  const sum = items.length
+    ? items
+        .map(({ id, price }) => cart[id] * price)
+        .reduce((fullSum, sum) => fullSum + sum, 0)
+    : 0;
+
+  return {
+    items,
+    sum,
+  };
 };
 
 export const CartScreen = () => {
-  const items = useSelector(mapStateToProps, shallowEqual);
+  const { items, sum } = useSelector(mapStateToProps, shallowEqual);
   return (
-    <FlatList
-      style={styles.wrapper}
-      data={items}
-      keyExtractor={({ id }) => id.toString()}
-      renderItem={({item}) => <CartItem {...item} />}
-    />
+    <>
+      <FlatList
+        style={styles.wrapper}
+        data={items}
+        keyExtractor={({ id }) => id.toString()}
+        renderItem={({ item }) => <CartItem {...item} />}
+      />
+      <CartSum sum={sum} />
+    </>
   );
 };
 

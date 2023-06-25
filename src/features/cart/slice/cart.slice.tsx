@@ -28,6 +28,8 @@ export const cartSlice = createSlice({
         const difference =  state[id] - count;
         if (difference <= 0) {
           delete state[id];
+        } else {
+          state[id] = difference;
         }
       }
     },
