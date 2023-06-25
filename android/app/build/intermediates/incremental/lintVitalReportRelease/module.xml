@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/Users/aleksei.paseishvili/Desktop/work/shoping-cart/android/app"
+    name=":app"
+    type="APP"
+    maven="ShoppingCart:app:"
+    gradle="7.4.2"
+    buildFolder="build"
+    bootClassPath="/Users/aleksei.paseishvili/Library/Android/sdk/platforms/android-33/android.jar:/Users/aleksei.paseishvili/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-33"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>
